@@ -7,21 +7,9 @@ import FooterCredit from './components/FooterCredit';
 import { Wifi, WifiOff, AlertTriangle, PackageX, Sparkles } from 'lucide-react';
 import './styles.css';
 
-export default function App() {
-  const [orders, setOrders] = useState([]);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [error, setError] = useState(null);
-  const [fromCache, setFromCache] = useState(false);
+const useNetworkStatus = () => {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
-  // Simulation Controls for Testing Task A & B Requirements
-  const [simulatedOffline, setSimulatedOffline] = useState(false);
-  const [forceError, setForceError] = useState(false);
-  const [simulateEmpty, setSimulateEmpty] = useState(false);
-
-  // Listen to browser network changes
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
@@ -35,6 +23,23 @@ export default function App() {
     };
   }, []);
 
+  return isOffline;
+};
+
+export default function App() {
+  const [orders, setOrders] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [error, setError] = useState(null);
+  const [fromCache, setFromCache] = useState(false);
+  const browserOffline = useNetworkStatus();
+
+  // Simulation Controls for Testing Task A & B Requirements
+  const [simulatedOffline, setSimulatedOffline] = useState(false);
+  const [forceError, setForceError] = useState(false);
+  const [simulateEmpty, setSimulateEmpty] = useState(false);
+
   // Initial Fetch & Refresh
   const loadOrderData = async ({ refresh = false } = {}) => {
     if (refresh) {
@@ -44,27 +49,15 @@ export default function App() {
     }
     setError(null);
 
-    const effectiveOffline = isOffline || simulatedOffline;
+    const effectiveOffline = browserOffline || simulatedOffline;
 
     if (effectiveOffline) {
-      // Simulate offline handling
-      const cached = localStorage.getItem('digital_heroes_order_cache_inr');
-      if (cached) {
-        setOrders(JSON.parse(cached));
-        setFromCache(true);
-        setError(null);
-      } else {
-        setError('Network Unavailable: Device is offline and no cached orders were found.');
-      }
-      setIsLoading(false);
-      setIsRefreshing(false);
+      await handleOfflineFetch();
       return;
     }
 
     try {
-      const res = await fetchOrders({ forceError, simulateEmpty, delayMs: refresh ? 1000 : 700 });
-      setOrders(res.data);
-      setFromCache(res.fromCache);
+      await handleOnlineFetch({ refresh });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -73,9 +66,28 @@ export default function App() {
     }
   };
 
+  const handleOfflineFetch = async () => {
+    const cached = localStorage.getItem('digital_heroes_order_cache_inr');
+    if (cached) {
+      setOrders(JSON.parse(cached));
+      setFromCache(true);
+      setError(null);
+    } else {
+      setError('Network Unavailable: Device is offline and no cached orders were found.');
+    }
+    setIsLoading(false);
+    setIsRefreshing(false);
+  };
+
+  const handleOnlineFetch = async ({ refresh }) => {
+    const res = await fetchOrders({ forceError, simulateEmpty, delayMs: refresh ? 1000 : 700 });
+    setOrders(res.data);
+    setFromCache(res.fromCache);
+  };
+
   useEffect(() => {
     loadOrderData();
-  }, [simulatedOffline, forceError, simulateEmpty]);
+  }, [simulatedOffline, forceError, simulateEmpty]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
@@ -90,9 +102,8 @@ export default function App() {
         <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => setSimulatedOffline(!simulatedOffline)}
-            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${
-              simulatedOffline ? 'bg-amber-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-            }`}
+            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${simulatedOffline ? 'bg-amber-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
           >
             {simulatedOffline ? <WifiOff className="w-3.5 h-3.5" /> : <Wifi className="w-3.5 h-3.5" />}
             {simulatedOffline ? 'Offline Mode' : 'Online Mode'}
@@ -100,9 +111,8 @@ export default function App() {
 
           <button
             onClick={() => setForceError(!forceError)}
-            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${
-              forceError ? 'bg-rose-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-            }`}
+            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${forceError ? 'bg-rose-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
           >
             <AlertTriangle className="w-3.5 h-3.5" />
             {forceError ? 'API Error ON' : 'Trigger Error'}
@@ -110,9 +120,8 @@ export default function App() {
 
           <button
             onClick={() => setSimulateEmpty(!simulateEmpty)}
-            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${
-              simulateEmpty ? 'bg-indigo-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-            }`}
+            className={`px-2 py-1.5 rounded-lg text-[11px] font-semibold flex items-center justify-center gap-1 transition ${simulateEmpty ? 'bg-indigo-600 text-white' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+              }`}
           >
             <PackageX className="w-3.5 h-3.5" />
             {simulateEmpty ? 'Empty ON' : 'Trigger Empty'}
@@ -135,13 +144,13 @@ export default function App() {
               ₹
             </div>
             <div>
-              <h1 className="font-extrabold text-slate-900 text-sm leading-none">Order Tracker</h1>
+              <h1 className="font-black text-slate-900 leading-none" style={{ fontSize: '45px', fontWeight: 900 }}>Order Tracker</h1>
               <span className="text-[10px] text-slate-500 font-medium">Digital Heroes Express (India)</span>
             </div>
           </div>
 
           <div className="flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 bg-slate-100 rounded-full text-slate-700">
-            {simulatedOffline || isOffline ? (
+            {simulatedOffline || browserOffline ? (
               <span className="flex items-center gap-1 text-amber-600">
                 <WifiOff className="w-3 h-3" /> Offline
               </span>
@@ -154,18 +163,18 @@ export default function App() {
         </header>
 
         {/* Offline Banner when network/offline state is triggered */}
-        <OfflineBanner 
-          isOffline={isOffline || simulatedOffline} 
-          fromCache={fromCache} 
-          onRetry={() => loadOrderData({ refresh: true })} 
+        <OfflineBanner
+          isOffline={browserOffline || simulatedOffline}
+          fromCache={fromCache}
+          onRetry={() => loadOrderData({ refresh: true })}
         />
 
         {/* Main Scrollable Viewport */}
         <main className="app-content">
           {selectedOrder ? (
-            <OrderDetail 
-              order={selectedOrder} 
-              onBack={() => setSelectedOrder(null)} 
+            <OrderDetail
+              order={selectedOrder}
+              onBack={() => setSelectedOrder(null)}
             />
           ) : (
             <OrderList

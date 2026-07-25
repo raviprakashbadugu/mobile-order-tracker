@@ -42,7 +42,7 @@ export const fetchOrders = async ({ forceError = false, simulateEmpty = false, d
       }
 
       try {
-        const response = await fetch('/api/orders.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}api/orders.json`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
