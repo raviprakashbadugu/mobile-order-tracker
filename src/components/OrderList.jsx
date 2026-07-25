@@ -3,12 +3,12 @@ import { RefreshCw, Search, Package, AlertCircle, ArrowUpRight, ChevronRight } f
 import StatusChip from './StatusChip';
 import { formatINR } from '../data/mockOrders';
 
-export default function OrderList({ 
-  orders = [], 
-  isLoading, 
-  error, 
-  onSelectOrder, 
-  onRefresh, 
+export default function OrderList({
+  orders = [],
+  isLoading,
+  error,
+  onSelectOrder,
+  onRefresh,
   isRefreshing,
   onClearFilters
 }) {
@@ -17,11 +17,11 @@ export default function OrderList({
 
   // Filter orders
   const filteredOrders = orders.filter(order => {
-    const matchesSearch = 
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer?.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.items?.some(i => i.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesSearch =
+      order.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.customer?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.customer?.address?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.items?.some(i => i.name?.toLowerCase().includes(searchTerm.toLowerCase()));
 
     const matchesStatus = selectedStatus === 'all' || order.status.toLowerCase() === selectedStatus.toLowerCase();
 
@@ -43,9 +43,8 @@ export default function OrderList({
         <button
           onClick={onRefresh}
           disabled={isLoading || isRefreshing}
-          className={`flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 text-orange-600 hover:bg-orange-100 active:scale-95 rounded-full text-xs font-semibold transition ${
-            isRefreshing ? 'opacity-75 cursor-not-allowed' : ''
-          }`}
+          className={`flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 text-orange-600 hover:bg-orange-100 active:scale-95 rounded-full text-xs font-semibold transition ${isRefreshing ? 'opacity-75 cursor-not-allowed' : ''
+            }`}
           title="Pull to Refresh"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'spinner' : ''}`} />
@@ -72,7 +71,7 @@ export default function OrderList({
           className="w-full pl-10 pr-8 py-2.5 bg-white border border-slate-200 rounded-2xl text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition shadow-2xs"
         />
         {searchTerm && (
-          <button 
+          <button
             onClick={() => setSearchTerm('')}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600"
           >
@@ -87,11 +86,10 @@ export default function OrderList({
           <button
             key={cat}
             onClick={() => setSelectedStatus(cat)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize whitespace-nowrap transition-all ${
-              selectedStatus === cat
-                ? 'bg-slate-900 text-white shadow-xs scale-102'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
-            }`}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold capitalize whitespace-nowrap transition-all ${selectedStatus === cat
+              ? 'bg-slate-900 text-white shadow-xs scale-102'
+              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+              }`}
           >
             {cat}
           </button>
@@ -145,8 +143,8 @@ export default function OrderList({
           <div>
             <h3 className="font-bold text-slate-900 text-sm">No Orders Found</h3>
             <p className="text-xs text-slate-500 mt-1">
-              {searchTerm || selectedStatus !== 'all' 
-                ? 'No matching orders found with current filters.' 
+              {searchTerm || selectedStatus !== 'all'
+                ? 'No matching orders found with current filters.'
                 : 'Your order history is currently empty.'}
             </p>
           </div>
@@ -193,7 +191,11 @@ export default function OrderList({
 
               <div className="mt-2.5 pt-2.5 border-t border-slate-50 flex items-center justify-between text-[11px] text-slate-500">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-base">{order.items?.[0]?.image || '📦'}</span>
+                  {order.items?.[0]?.image?.startsWith('/') || order.items?.[0]?.image?.startsWith('http') ? (
+                    <img src={order.items[0].image} alt="" className="w-5 h-5 object-cover shrink-0 rounded-md shadow-2xs" />
+                  ) : (
+                    <span className="text-base">{order.items?.[0]?.image || '📦'}</span>
+                  )}
                   <span className="truncate max-w-[170px] font-medium text-slate-700">
                     {order.items?.[0]?.name}
                     {order.items?.length > 1 && ` +${order.items.length - 1} more`}

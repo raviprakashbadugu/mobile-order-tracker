@@ -17,8 +17,8 @@ export default function OrderDetail({ order, onBack }) {
     }
   };
 
-  const subtotal = order.amount * 0.82; // 18% GST calculation
-  const gstTax = order.amount * 0.18;
+  const subtotal = order.amount / 1.18; // 18% GST calculation (inclusive)
+  const gstTax = order.amount - subtotal;
 
   return (
     <div className="screen-enter space-y-4 pb-8">
@@ -78,8 +78,12 @@ export default function OrderDetail({ order, onBack }) {
           {order.items?.map((item) => (
             <div key={item.id} className="py-3 flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center text-xl shrink-0">
-                  {item.image || '📦'}
+                <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0 shadow-2xs">
+                  {item.image?.startsWith('/') || item.image?.startsWith('http') ? (
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-xl">{item.image || '📦'}</span>
+                  )}
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-slate-900">{item.name}</h4>

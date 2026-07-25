@@ -6,7 +6,9 @@ export default function VerticalTimeline({ timeline = [] }) {
 
   // Calculate progress height percentage
   const completedCount = timeline.filter(t => t.completed).length;
-  const progressPercent = Math.min(100, Math.max(0, ((completedCount - 0.5) / (timeline.length - 1)) * 100));
+  const progressPercent = timeline.length <= 1
+    ? 0
+    : Math.min(100, Math.max(0, ((completedCount - 0.5) / (timeline.length - 1)) * 100));
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 my-4">
@@ -20,8 +22,8 @@ export default function VerticalTimeline({ timeline = [] }) {
         <div className="timeline-line"></div>
 
         {/* Animated Progress Fill */}
-        <div 
-          className="timeline-progress" 
+        <div
+          className="timeline-progress"
           style={{ height: `${progressPercent}%` }}
         ></div>
 
