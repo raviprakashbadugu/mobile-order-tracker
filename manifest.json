@@ -1,6 +1,8 @@
 {
+  "id": "com.digitalheroes.ordertracker",
   "short_name": "OrderTracker",
   "name": "Order Tracker - Digital Heroes",
+  "description": "Order Tracker Mobile Application built for Digital Heroes Training Task featuring Indian e-commerce order tracking, offline caching, and vertical status timelines.",
   "icons": [
     {
       "src": "favicon.svg",
