@@ -10,7 +10,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/mobile-order-tracker/",
+  "scope": "/mobile-order-tracker/",
   "background_color": "#0f172a",
   "theme_color": "#ea580c",
   "display": "standalone",
