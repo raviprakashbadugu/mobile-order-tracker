@@ -50,14 +50,14 @@ export const fetchOrders = async ({ forceError = false, simulateEmpty = false, d
         // Save to cache for offline access
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
         resolve({ data, fromCache: false });
-      } catch (err) {
+      } catch {
         // Fallback to cached data if network request fails
         const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (cached) {
           try {
             resolve({ data: JSON.parse(cached), fromCache: true, message: 'Network failed, showing cache' });
             return;
-          } catch (e) {
+          } catch {
             // ignore
           }
         }

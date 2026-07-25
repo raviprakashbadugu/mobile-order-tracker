@@ -1,5 +1,5 @@
 import React from 'react';
-import { WifiOff, Database, CheckCircle2 } from 'lucide-react';
+import { WifiOff, Database } from 'lucide-react';
 
 export default function OfflineBanner({ isOffline, fromCache, onRetry }) {
   if (!isOffline && !fromCache) return null;
