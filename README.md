@@ -5,6 +5,16 @@
 
 ---
 
+## 📋 Task Deliverables
+
+- 📁 **Public GitHub Repo**: [github.com/raviprakashbadugu/mobile-order-tracker](https://github.com/raviprakashbadugu/mobile-order-tracker)
+- 🌐 **Live Web Application**: [raviprakashbadugu.github.io/mobile-order-tracker](https://raviprakashbadugu.github.io/mobile-order-tracker/)
+- 🔗 **Raw Mock API URL**: [raviprakashbadugu.github.io/mobile-order-tracker/api/orders.json](https://raviprakashbadugu.github.io/mobile-order-tracker/api/orders.json)
+- 📱 **Mobile App / PWA / Android Web App**: Can be installed directly to Android home screen via Chrome PWA ("Add to Home Screen" / Install App) or accessed at [raviprakashbadugu.github.io/mobile-order-tracker](https://raviprakashbadugu.github.io/mobile-order-tracker/)
+- 🏷️ **Live Footer Credit**: Displays `"Built for Digital Heroes Training Task"` linked to `digitalheroesco.com` at the bottom of the app.
+
+---
+
 ## 📱 Project Overview
 **Order Tracker (India Edition)** is a 2-screen mobile app tailored to mock Indian e-commerce / quick-commerce logistics applications (such as Zomato, Swiggy Instamart, Flipkart, Myntra, or Blinkit). It features Indian Rupee (INR `₹`) formatting, UPI payment tracking, Indian courier AWB tracking (Blue Dart, Delhivery, Ekart, Shadowfax, Xpressbees), and major Indian city hub routes.
 
