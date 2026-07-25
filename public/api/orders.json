@@ -1,0 +1,201 @@
+[
+  {
+    "id": "ORD-IND-9821",
+    "customer": {
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@techstar.in",
+      "phone": "+91 98765 43210",
+      "address": "Flat 402, Green Glen Layout, Bellandur, Bengaluru, Karnataka 560103"
+    },
+    "status": "processing",
+    "placed_at": "2026-07-25T10:15:00Z",
+    "amount": 3499.00,
+    "currency": "INR",
+    "payment_method": "UPI (PhonePe - rahul@ybl)",
+    "items": [
+      { "id": "ITM-101", "name": "boAt Rockerz 550 Over-Ear Headphones", "quantity": 1, "price": 2499.00, "image": "🎧" },
+      { "id": "ITM-102", "name": "Hard Shell Carrying Case", "quantity": 1, "price": 1000.00, "image": "🎒" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-25T10:15:00Z", "description": "Order received and confirmed by merchant", "completed": true },
+      { "status": "UPI Payment Received", "timestamp": "2026-07-25T10:16:30Z", "description": "Payment verified via PhonePe UPI", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-25T12:00:00Z", "description": "Packed at Bengaluru Fulfillment Center", "completed": true, "current": true },
+      { "status": "Dispatched via BlueDart", "timestamp": null, "description": "Handed over to BlueDart Express", "completed": false },
+      { "status": "Delivered", "timestamp": null, "description": "Estimated delivery today by 8:00 PM", "completed": false }
+    ]
+  },
+  {
+    "id": "ORD-IND-9820",
+    "customer": {
+      "name": "Ananya Iyer",
+      "email": "ananya.iyer@designhub.co.in",
+      "phone": "+91 98123 45678",
+      "address": "12B, Sea Crest Apartments, Carter Road, Bandra West, Mumbai, Maharashtra 400050"
+    },
+    "status": "shipped",
+    "placed_at": "2026-07-24T18:30:00Z",
+    "amount": 14999.00,
+    "currency": "INR",
+    "payment_method": "Credit Card (HDFC Regalia ending 9482)",
+    "tracking_number": "BLUEDART-IND849201",
+    "items": [
+      { "id": "ITM-201", "name": "LG 27-inch 4K UHD IPS Monitor", "quantity": 1, "price": 13499.00, "image": "🖥️" },
+      { "id": "ITM-202", "name": "HDMI 2.1 Braided Cable (2m)", "quantity": 1, "price": 1500.00, "image": "🔌" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-24T18:30:00Z", "description": "Order placed", "completed": true },
+      { "status": "HDFC Card Authorized", "timestamp": "2026-07-24T18:31:00Z", "description": "Payment capture complete", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-25T08:00:00Z", "description": "Bhiwandi Warehouse, Thane", "completed": true },
+      { "status": "Out for Delivery", "timestamp": "2026-07-25T11:45:00Z", "description": "With BlueDart Delivery Agent (Ramesh)", "completed": true, "current": true },
+      { "status": "Delivered", "timestamp": null, "description": "Expected delivery by 6:00 PM today", "completed": false }
+    ]
+  },
+  {
+    "id": "ORD-IND-9819",
+    "customer": {
+      "name": "Vikramaditya Singh",
+      "email": "vikram.singh@gmail.com",
+      "phone": "+91 97654 32109",
+      "address": "Tower 3, DLF Phase 5, Golf Course Road, Gurugram, Haryana 122002"
+    },
+    "status": "delivered",
+    "placed_at": "2026-07-23T14:20:00Z",
+    "amount": 2999.00,
+    "currency": "INR",
+    "payment_method": "Paytm UPI (vikram@paytm)",
+    "tracking_number": "DELHIVERY-DEL984102",
+    "items": [
+      { "id": "ITM-301", "name": "Keychron K2 Wireless Mechanical Keyboard", "quantity": 1, "price": 2999.00, "image": "⌨️" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-23T14:20:00Z", "description": "Order placed successfully", "completed": true },
+      { "status": "Payment Verified", "timestamp": "2026-07-23T14:21:00Z", "description": "Paytm UPI payment verified", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-23T16:00:00Z", "description": "Packed at Delhi NCR Hub", "completed": true },
+      { "status": "Out for Delivery", "timestamp": "2026-07-24T09:00:00Z", "description": "Out with Delhivery rider", "completed": true },
+      { "status": "Delivered", "timestamp": "2026-07-24T15:42:00Z", "description": "Delivered to security gate", "completed": true, "current": true }
+    ]
+  },
+  {
+    "id": "ORD-IND-9818",
+    "customer": {
+      "name": "Priya Patel",
+      "email": "priya.patel@ahmedabad.org",
+      "phone": "+91 99887 76655",
+      "address": "401 Shivalik Shilp, SG Highway, Ahmedabad, Gujarat 380015"
+    },
+    "status": "pending",
+    "placed_at": "2026-07-25T14:00:00Z",
+    "amount": 1850.00,
+    "currency": "INR",
+    "payment_method": "Cash on Delivery (COD)",
+    "items": [
+      { "id": "ITM-401", "name": "Portronics Toad Ergonomic Wireless Mouse", "quantity": 1, "price": 1250.00, "image": "🖱️" },
+      { "id": "ITM-402", "name": "Anti-Skid Desk Mat (Large)", "quantity": 1, "price": 600.00, "image": "🖼️" }
+    ],
+    "timeline": [
+      { "status": "Order Placed", "timestamp": "2026-07-25T14:00:00Z", "description": "COD order received, pending OTP verification", "completed": true, "current": true },
+      { "status": "Merchant Verification", "timestamp": null, "description": "Awaiting merchant confirmation", "completed": false },
+      { "status": "Packed in Hub", "timestamp": null, "description": "Queued for fulfillment", "completed": false },
+      { "status": "Out for Delivery", "timestamp": null, "description": "Not dispatched", "completed": false },
+      { "status": "Delivered", "timestamp": null, "description": "Pending delivery", "completed": false }
+    ]
+  },
+  {
+    "id": "ORD-IND-9817",
+    "customer": {
+      "name": "Arjun Kapoor",
+      "email": "arjun.kapoor@innovate.in",
+      "phone": "+91 96543 21098",
+      "address": "Villa 14, Jubilee Hills, Road No. 36, Hyderabad, Telangana 500033"
+    },
+    "status": "cancelled",
+    "placed_at": "2026-07-22T09:10:00Z",
+    "amount": 4999.00,
+    "currency": "INR",
+    "payment_method": "Google Pay UPI (arjun@okicici)",
+    "items": [
+      { "id": "ITM-501", "name": "Noise ColorFit Pro 5 Smartwatch", "quantity": 1, "price": 4499.00, "image": "⌚" },
+      { "id": "ITM-502", "name": "Extra Metallic Strap", "quantity": 1, "price": 500.00, "image": "⌚" }
+    ],
+    "timeline": [
+      { "status": "Order Placed", "timestamp": "2026-07-22T09:10:00Z", "description": "Order submitted by buyer", "completed": true },
+      { "status": "Cancelled", "timestamp": "2026-07-22T09:45:00Z", "description": "Cancelled by customer - Full refund credited to Google Pay UPI", "completed": true, "failed": true }
+    ]
+  },
+  {
+    "id": "ORD-IND-9816",
+    "customer": {
+      "name": "Neha Verma",
+      "email": "neha.verma@fintech.in",
+      "phone": "+91 94321 09876",
+      "address": "Plot 88, North Main Road, Koregaon Park, Pune, Maharashtra 411001"
+    },
+    "status": "delivered",
+    "placed_at": "2026-07-21T11:05:00Z",
+    "amount": 1299.00,
+    "currency": "INR",
+    "payment_method": "CRED Pay UPI",
+    "tracking_number": "EKART-EKT902184",
+    "items": [
+      { "id": "ITM-601", "name": "Fastrack 65W GaN Fast Charger", "quantity": 1, "price": 1299.00, "image": "⚡" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-21T11:05:00Z", "description": "Order submitted", "completed": true },
+      { "status": "CRED Pay Verified", "timestamp": "2026-07-21T11:06:00Z", "description": "Instant cashback applied", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-21T13:30:00Z", "description": "Packed in Chakan Hub, Pune", "completed": true },
+      { "status": "Out for Delivery", "timestamp": "2026-07-22T08:15:00Z", "description": "Dispatched via Ekart Logistics", "completed": true },
+      { "status": "Delivered", "timestamp": "2026-07-22T13:10:00Z", "description": "Handed over to customer", "completed": true, "current": true }
+    ]
+  },
+  {
+    "id": "ORD-IND-9815",
+    "customer": {
+      "name": "Rohan Deshmukh",
+      "email": "rohan.d@startupindia.co",
+      "phone": "+91 95432 10987",
+      "address": "Flat 301, Sunshine Heights, HSR Layout Sector 1, Bengaluru, Karnataka 560102"
+    },
+    "status": "processing",
+    "placed_at": "2026-07-25T08:45:00Z",
+    "amount": 5499.00,
+    "currency": "INR",
+    "payment_method": "ICICI Netbanking",
+    "items": [
+      { "id": "ITM-701", "name": "Wipro Smart LED Desk Lamp with Wireless Charging", "quantity": 1, "price": 3999.00, "image": "💡" },
+      { "id": "ITM-702", "name": "Under-Desk Cable Organizer Tray", "quantity": 1, "price": 1500.00, "image": "🔌" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-25T08:45:00Z", "description": "Order placed", "completed": true },
+      { "status": "Payment Verified", "timestamp": "2026-07-25T08:46:00Z", "description": "ICICI Netbanking authorized", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-25T11:00:00Z", "description": "Assembly complete in Whitefield warehouse", "completed": true, "current": true },
+      { "status": "Out for Delivery", "timestamp": null, "description": "Awaiting Shadowfax pickup", "completed": false },
+      { "status": "Delivered", "timestamp": null, "description": "Pending delivery", "completed": false }
+    ]
+  },
+  {
+    "id": "ORD-IND-9814",
+    "customer": {
+      "name": "Kavya Nair",
+      "email": "kavya.nair@chennaitech.in",
+      "phone": "+91 93210 98765",
+      "address": "No. 45, 1st Main Road, Adyar, Chennai, Tamil Nadu 600020"
+    },
+    "status": "shipped",
+    "placed_at": "2026-07-24T16:00:00Z",
+    "amount": 8999.00,
+    "currency": "INR",
+    "payment_method": "Axis Bank Debit Card",
+    "tracking_number": "XPRESSBEES-XPR773291",
+    "items": [
+      { "id": "ITM-801", "name": "Focusrite Solo USB Audio Interface", "quantity": 1, "price": 6999.00, "image": "🎛️" },
+      { "id": "ITM-802", "name": "Maono Condenser Studio Mic", "quantity": 1, "price": 2000.00, "image": "🎙️" }
+    ],
+    "timeline": [
+      { "status": "Order Confirmed", "timestamp": "2026-07-24T16:00:00Z", "description": "Order submitted", "completed": true },
+      { "status": "Payment Verified", "timestamp": "2026-07-24T16:02:00Z", "description": "Debit card payment captured", "completed": true },
+      { "status": "Packed in Hub", "timestamp": "2026-07-25T07:30:00Z", "description": "Quality check passed", "completed": true },
+      { "status": "Out for Delivery", "timestamp": "2026-07-25T13:10:00Z", "description": "In transit with Xpressbees rider", "completed": true, "current": true },
+      { "status": "Delivered", "timestamp": null, "description": "Expected delivery today by 7:30 PM", "completed": false }
+    ]
+  }
+]
